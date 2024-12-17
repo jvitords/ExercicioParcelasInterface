@@ -1,0 +1,33 @@
+package application;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import model.entities.Contratos;
+
+
+public class Program {
+
+	public static void main(String[] args) {
+		
+		SimpleDateFormat formatoDaData = new SimpleDateFormat("dd/MM/yyyy");
+		String dataDoContrato = "25/10/2018";
+		Date data = new Date();
+		
+		try {
+			Date dataFormatada = formatoDaData.parse(dataDoContrato);
+			// System.out.println(formatoDaData.format(dataFormatada)); // data no formato desejado
+			data = dataFormatada;
+		}
+		catch(Exception e) {
+			System.out.println("Erro: " + e);
+		}
+		
+		int numeroDoContrato = 8028;
+		Double valorDoContrato = 600.0;
+		Contratos contrato = new Contratos(numeroDoContrato, data, valorDoContrato);
+		System.out.println(contrato);
+		
+	}
+
+}

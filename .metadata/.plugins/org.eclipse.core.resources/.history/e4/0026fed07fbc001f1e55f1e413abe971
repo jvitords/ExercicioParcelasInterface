@@ -1,0 +1,21 @@
+package application;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+
+public class Program {
+
+	public static void main(String[] args) {
+		
+		SimpleDateFormat formatoDaData = new SimpleDateFormat("dd/MM/yyy");
+		
+		int numeroDoContrato = 8028;
+		String dataDoContrato = "25/10/2018";
+		//Date dataDoContrato1 = formatoDaData.format(dataDoContrato);
+		Date date = new Date(dataDoContrato);
+
+		System.out.println(date);
+	}
+
+}

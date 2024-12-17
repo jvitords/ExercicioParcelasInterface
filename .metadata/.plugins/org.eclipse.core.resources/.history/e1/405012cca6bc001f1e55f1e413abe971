@@ -1,0 +1,35 @@
+package model.entities;
+
+import java.util.Date;
+
+public class Parcela {
+
+	private Date dataDeVencimento;
+	private Double valorDaParcela;
+	
+	public Parcela() {
+	}
+	
+	public Parcela(Date dataDeVencimento, Double valorDaParcela) {
+		this.dataDeVencimento = dataDeVencimento;
+		this.valorDaParcela = valorDaParcela;
+	}
+
+	public Date getDataDeVencimento() {
+		return dataDeVencimento;
+	}
+
+	public void setDataDeVencimento(Date dataDeVencimento) {
+		this.dataDeVencimento = dataDeVencimento;
+	}
+
+	public Double getValorDaParcela() {
+		return valorDaParcela;
+	}
+
+	public void setValorDaParcela(Double valorDaParcela) {
+		this.valorDaParcela = valorDaParcela;
+	}
+	
+	
+}

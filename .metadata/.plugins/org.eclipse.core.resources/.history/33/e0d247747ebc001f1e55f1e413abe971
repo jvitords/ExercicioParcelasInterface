@@ -1,0 +1,44 @@
+package model.services;
+
+import model.entities.Contratos;
+import model.entities.Parcela;
+
+public class ServicoDeContato {
+
+	private Contratos contrato;
+	private Parcela parcela;
+	private Integer quantidadeDeMesesDeParcela;
+	
+	public ServicoDeContato() {
+	}
+
+	public ServicoDeContato(Contratos contrato, Integer quantidadeDeMesesDeParcela) {
+		this.contrato = contrato;
+		this.quantidadeDeMesesDeParcela = quantidadeDeMesesDeParcela;
+	}
+
+	public void processarContrato(Contratos contrato, Integer mesesDeParcelas) {
+		// ******************
+		// pegar uma parcela, descobrir o valor da parcela, calcular o juros e a taxa e somar na parcela. E calcular a data de vencimento
+		
+		Double valorDeCadaParcela = contrato.getValorDoContrato() / mesesDeParcelas;
+	}
+	
+	public Contratos getContrato() {
+		return contrato;
+	}
+
+	public void setContrato(Contratos contrato) {
+		this.contrato = contrato;
+	}
+
+	public Integer getQuantidadeDeMesesDeParcela() {
+		return quantidadeDeMesesDeParcela;
+	}
+
+	public void setQuantidadeDeMesesDeParcela(Integer quantidadeDeMesesDeParcela) {
+		this.quantidadeDeMesesDeParcela = quantidadeDeMesesDeParcela;
+	}
+	
+	
+}

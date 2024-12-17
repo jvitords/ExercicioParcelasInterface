@@ -1,0 +1,66 @@
+package model.services;
+
+import java.util.Calendar;
+import java.util.Date;
+
+import model.entities.Contratos;
+import model.entities.Parcela;
+
+public class ServicoDeContato {
+
+	private Contratos contrato;
+	private Parcela parcela;
+	private Integer quantidadeDeMesesDeParcela;
+	private ServicoDePagamentosOnline servicoOnline;
+	
+	public ServicoDeContato() {
+	}
+
+	public ServicoDeContato(Contratos contrato, Integer quantidadeDeMesesDeParcela) {
+		this.contrato = contrato;
+		this.quantidadeDeMesesDeParcela = quantidadeDeMesesDeParcela;
+	}
+
+	public void processarContrato(Contratos contrato, Integer mesesDeParcelas, ServicoDePagamentosOnline servicoODePagamentosOnline) {
+		// ******************
+		// pegar uma parcela, descobrir o valor da parcela, calcular o juros e a taxa e somar na parcela. E calcular a data de vencimento
+		
+		Double valorDeCadaParcela = contrato.getValorDoContrato() / mesesDeParcelas;
+		
+		for(int i = 1; i < mesesDeParcelas; i++) {
+			// somar o valor do juros de cada parcela + taxa de serviço
+			Double valorComJurosETaxaDeServico = valorDeCadaParcela + (valorDeCadaParcela * servicoODePagamentosOnline.juros(valorDeCadaParcela, mesesDeParcelas)) + (valorDeCadaParcela * servicoODePagamentosOnline.taxaDePagamento(valorDeCadaParcela));
+			
+			Date dataDeVencimentoDaParcela = contrato.getDataDoContrato() ;
+			Calendar calendario = Calendar.getInstance();
+			calendario.setTime(dataDeVencimentoDaParcela);
+			calendario.add(Calendar.MONTH, i);
+			
+			dataDeVencimentoDaParcela = calendario.getTime();
+			
+			parcela.setValorDaParcela(valorComJurosETaxaDeServico); // registrando valor da parcela com a taxa e o juros
+			parcela.setDataDeVencimento(dataDeVencimentoDaParcela); // definindo a data de vencimento da parcela
+			
+			contrato.adicionarParcela(parcela);
+		}
+		System.out.println("Parcelas registradas com sucesso!");
+	}
+	
+	public Contratos getContrato() {
+		return contrato;
+	}
+
+	public void setContrato(Contratos contrato) {
+		this.contrato = contrato;
+	}
+
+	public Integer getQuantidadeDeMesesDeParcela() {
+		return quantidadeDeMesesDeParcela;
+	}
+
+	public void setQuantidadeDeMesesDeParcela(Integer quantidadeDeMesesDeParcela) {
+		this.quantidadeDeMesesDeParcela = quantidadeDeMesesDeParcela;
+	}
+	
+	
+}
